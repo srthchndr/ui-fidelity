@@ -5,7 +5,7 @@ import {ButtonVariant} from "../../types/buttonProps";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { AppDispatch, RootState } from '../../store';
-import { addEmployee, deleteEmployee, getEmployees, updateEmployee, updateState } from './employeeReducer';
+import { addEmployee, deleteEmployee, getEmployees, updateEmployee } from './employeeReducer';
 import Dialog from "../../components/DialogComponent";
 import InputComponent from "../../components/InputComponent";
 import { InputType } from "../../types/inputProps";
@@ -22,7 +22,7 @@ function MainView() {
       setUpdatedDetails(employees);
     });
     setUpdatedDetails(employees);
-  },[])
+  }, [employees, dispatch])
 
   useEffect(() => {
     setUpdatedDetails(employees);
