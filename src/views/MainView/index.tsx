@@ -22,7 +22,8 @@ function MainView() {
       setUpdatedDetails(employees);
     });
     setUpdatedDetails(employees);
-  }, [employees, dispatch])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch])
 
   useEffect(() => {
     setUpdatedDetails(employees);
