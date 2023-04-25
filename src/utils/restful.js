@@ -1,7 +1,3 @@
-// import {
-//     BASE_URL
-// } from '../constants';
-
 export const CALL_TYPE_DELETE = 'DELETE';
 export const CALL_TYPE_GET = 'GET';
 export const CALL_TYPE_POST = 'POST';
@@ -12,6 +8,8 @@ export const CONTENT_TYPE_JSON = 'application/json';
 export const CONTENT_TYPES = [
     CONTENT_TYPE_JSON,
 ];
+
+const {REACT_APP_API_URL} = process.env;
 
 const makeCall = (parameters) => new Promise((resolve, reject) => {
     const {
@@ -27,7 +25,7 @@ const makeCall = (parameters) => new Promise((resolve, reject) => {
 
     const body = payload ? JSON.stringify(payload) : undefined;
 
-    fetch(`${/*BASE_URL*/'http://localhost:3100/api'}${URL}`, {
+    fetch(`${REACT_APP_API_URL || 'http://localhost:3100/api'}${URL}`, {
         body,
         headers,
         method
