@@ -13,4 +13,5 @@ export interface ButtonProps {
     href?: string,
     isDisabled?: boolean,
     variant?: ButtonVariant,
+    id?: string
 }

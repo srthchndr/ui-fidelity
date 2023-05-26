@@ -18,7 +18,7 @@ function CardComponent({className, deleteEmployee, employee, saveEmployee, handl
                 <p data-testid={'dob'} className={'text-xs md:ml-auto leading-5'}><CakeIcon fontSize={'small'}/> {moment(employee.dob).format('Do MMMM')}</p>
               </div>
               <p data-testid={'description'} className={'line-clamp-2 text-black/60'}>{employee.description}</p>
-              <p data-testid={'lastUpdated-1'} className={'uppercase text-xs'}>{moment(employee.lastUpdated).fromNow()}</p>
+              <p data-testid={'lastUpdated-1'} className={'capitalize text-[10px]'}>{moment(employee.lastUpdated).fromNow()}</p>
               <div className={'flex space-x-3'}>
                 <ButtonComponent variant={ButtonVariant.Primary} handleClick={() => setOnEditMode(true)}>Edit Details</ButtonComponent>
                 <ButtonComponent className={'data-[variant=secondary]:text-red-500 data-[variant=secondary]:border-red-500 data-[variant=secondary]:hover:bg-red-500 data-[variant=secondary]:hover:text-white'} variant={ButtonVariant.Secondary} handleClick={() => deleteEmployee(employee._id, setOnEditMode)}>Delete Record</ButtonComponent>
@@ -32,7 +32,7 @@ function CardComponent({className, deleteEmployee, employee, saveEmployee, handl
                 <InputComponent data-testid={'dob-input'} className={'text-black'} handleChange={({target: {name, value}}) => handleChange({name, value}, employee._id)} name='dob' label={'dob'} type={InputType.Date} value={moment(employee.dob).format('YYYY-MM-DD')}/>
               </div>
               <InputComponent data-testid={'description-input'} className={'text-black'} handleChange={({target: {name, value}}) => handleChange({name, value}, employee._id)} name='description' label={'description'} type={InputType.TextArea} value={employee.description}/>
-              <p data-testid={'lastUpdated-2'} className={'capitalize text-xs '}>Updated: {moment(employee.lastUpdated).fromNow()}</p>
+              <p data-testid={'lastUpdated-2'} className={'capitalize text-[10px]'}>Updated: {moment(employee.lastUpdated).fromNow()}</p>
               <div className={'flex space-x-3'}>
                 <ButtonComponent data-testid={'save-btn'} variant={ButtonVariant.Primary} handleClick={() => saveEmployee(employee._id, setOnEditMode)}>Update Details</ButtonComponent>
                 <ButtonComponent data-testid={'cancel-btn'} variant={ButtonVariant.Secondary} handleClick={() => cancelEdit(setOnEditMode)}>Cancel Edit</ButtonComponent>

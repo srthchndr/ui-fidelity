@@ -21,10 +21,6 @@ test('Renders Card correctly', async () => {
     expect(dob).toHaveTextContent('1st January');
     expect(description).toHaveTextContent('Description about Peter Thiel');
     expect(buttons.length).toBe(2);    
-
-    // expect(button).toHaveTextContent('Primary Button');
-    // fireEvent.click(button);
-    // expect(btnClick).toHaveBeenCalledTimes(1);
 });
 
 test('On Clicking Edit', async () => {
