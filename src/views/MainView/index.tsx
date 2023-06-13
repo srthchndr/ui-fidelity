@@ -12,11 +12,11 @@ function MainView() {
   const {employees} = useSelector((state: RootState) => state.details);
   const dispatch = useDispatch<AppDispatch>();
 
-  const [originalEmployeesList, setOriginalEmployeesList] = useState<Employee[]>([]);
+  const [originalEmployees, setOriginalEmployees] = useState<Employee[]>([]);
 
   useEffect(() => {
     dispatch(getEmployees()).then((res) => {
-      setOriginalEmployeesList(res.payload);
+      setOriginalEmployees(res.payload);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
@@ -61,7 +61,7 @@ function MainView() {
   }  
 
   const cancelEdit = (setEditState: React.Dispatch<React.SetStateAction<boolean>>) => {
-    dispatch(updateState(originalEmployeesList));
+    dispatch(updateState(originalEmployees));
     setEditState(false);
   }
 
