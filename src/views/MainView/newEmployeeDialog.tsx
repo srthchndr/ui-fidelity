@@ -10,7 +10,7 @@ import { useState } from "react";
 import { NewEmployeeDialogProps } from "../../types/mainViewTypes";
 
 const NewEmployeeDialog = ({isOpen, setIsOpen}: NewEmployeeDialogProps) => {
-    const [newEmployee, setNewEmployee] = useState({name: '', description: '', dob: new Date()});
+    const [newEmployee, setNewEmployee] = useState({name: '', description: '', dob: ''});
     const dispatch = useDispatch<AppDispatch>();
   
     const closeDialog = () => {
@@ -25,14 +25,14 @@ const NewEmployeeDialog = ({isOpen, setIsOpen}: NewEmployeeDialogProps) => {
     }
   
     const addNewEmployee = () => {
-      dispatch(addEmployee(newEmployee)).then(() => {
-        setNewEmployee({name: '', description: '', dob: new Date()});
+      dispatch(addEmployee({...newEmployee, dob: new Date(newEmployee.dob)})).then(() => {
+        setNewEmployee({name: '', description: '', dob: ''});
         closeDialog();
       });
     }
   
     const cancelOperation = () => {
-      setNewEmployee({name: '', description: '', dob: new Date()});
+      setNewEmployee({name: '', description: '', dob: ''});
       closeDialog();
     }
   

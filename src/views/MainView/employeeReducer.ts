@@ -17,9 +17,14 @@ export const addEmployee = createAsyncThunk(
 );
 
 export const updateEmployee = createAsyncThunk(
-    'employee/updateEmployee', async (details: Employee) => {
-      const response = await makeCall({method: CALL_TYPE_PUT, URL: '/employee', payload: {...details}})
-      return response
+    'employee/updateEmployee', async (details: Employee, thunkApi) => {
+      const response = makeCall({method: CALL_TYPE_PUT, URL: '/employee', payload: {...details}}).then((res) => {
+        return res;
+      }).catch((res) => {
+        return thunkApi.rejectWithValue(res);
+      })
+
+      return response;
     }
 );
 
@@ -31,7 +36,8 @@ export const deleteEmployee = createAsyncThunk(
 );
 
 const initialState: EmployeesState = {
-  employees: []
+  employees: [],
+  errorMessage: ''
 }
 
 export const employeeSlice = createSlice({
@@ -49,6 +55,11 @@ export const employeeSlice = createSlice({
     builder.addCase(addEmployee.fulfilled, (state, {payload}) => {
         state.employees = [{...payload}, ...state.employees];        
     })
+    builder.addCase(addEmployee.rejected, (state, {payload}: any) => {
+      if(payload.clientError) {
+        state.errorMessage = payload.errorMessage
+      }
+    })
     builder.addCase(updateEmployee.fulfilled, (state, {payload}) => {
         state = {...state, employees: state.employees.map((employee) => {
             if(employee._id === payload._id) {
@@ -56,6 +67,11 @@ export const employeeSlice = createSlice({
             }
             return employee;
         })}
+    })
+    builder.addCase(updateEmployee.rejected, (state, {payload}: any) => {
+      if(payload.clientError) {
+        state.errorMessage = payload.errorMessage
+      }
     })
     builder.addCase(deleteEmployee.fulfilled, (state, {payload}) => {
         state.employees = state.employees.filter((employee) => employee._id !== payload._id)

@@ -10,4 +10,5 @@ export interface Employee {
   
 export interface EmployeesState {
     employees: Employee[]
+    errorMessage?: string
 }

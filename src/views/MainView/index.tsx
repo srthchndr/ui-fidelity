@@ -46,7 +46,9 @@ function MainView() {
     const employeeWithChanges = employees.find((employee) => id === employee._id);
 
     if(employeeWithChanges) {
-      dispatch(updateEmployee(employeeWithChanges)).then(updateEmployeesListState)
+      dispatch(updateEmployee(employeeWithChanges)).then(() => {
+        updateEmployeesListState();
+      })
     }
 
     function updateEmployeesListState() {
