@@ -25,7 +25,7 @@ const makeCall = (parameters) => new Promise((resolve, reject) => {
 
     const body = payload ? JSON.stringify(payload) : undefined;
 
-    fetch(`${REACT_APP_API_URL || 'http://localhost:3100/api'}${URL}`, {
+    fetch(`${REACT_APP_API_URL}${URL}`, {
         body,
         headers,
         method
