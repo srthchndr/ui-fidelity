@@ -9,7 +9,7 @@ export const CONTENT_TYPES = [
     CONTENT_TYPE_JSON,
 ];
 
-const {REACT_APP_API_URL} = process.env;
+const {REACT_APP_API_URL='http://localhost:3100/api'} = process.env;
 
 const makeCall = (parameters) => new Promise((resolve, reject) => {
     const {
